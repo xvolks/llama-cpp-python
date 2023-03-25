@@ -1016,13 +1016,13 @@ This package provides:</p>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load a llama.cpp model from `model_path`.</span>
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">        Args:</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">            model_path: Path to the model directory.</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">            n_ctx: Number of tokens to keep in memory.</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">            model_path: Path to the model.</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">            n_ctx: Maximum context size.</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">            n_parts: Number of parts to split the model into. If -1, the number of parts is automatically determined.</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">            seed: Random seed.</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">            f16_kv: Use half-precision for key/value matrices.</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">            logits_all: Return logits for all tokens, not just the vocabulary.</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">            vocab_only: Only use tokens in the vocabulary.</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">            seed: Random seed. 0 for random.</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">            f16_kv: Use half-precision for key/value cache.</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">            logits_all: Return logits for all tokens, not just the last token.</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">            vocab_only: Only load the vocabulary no weights.</span>
 </span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">            n_threads: Number of threads to use. If None, the number of threads is automatically determined.</span>
 </span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a>
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">        Raises:</span>
@@ -1244,7 +1244,7 @@ This package provides:</p>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Path to the model directory.</p></td>
+          <td><p>Path to the model.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -1254,7 +1254,7 @@ This package provides:</p>
           <td>
                 <code>int</code>
           </td>
-          <td><p>Number of tokens to keep in memory.</p></td>
+          <td><p>Maximum context size.</p></td>
           <td>
                 <code>512</code>
           </td>
@@ -1274,7 +1274,7 @@ This package provides:</p>
           <td>
                 <code>int</code>
           </td>
-          <td><p>Random seed.</p></td>
+          <td><p>Random seed. 0 for random.</p></td>
           <td>
                 <code>1337</code>
           </td>
@@ -1284,7 +1284,7 @@ This package provides:</p>
           <td>
                 <code>bool</code>
           </td>
-          <td><p>Use half-precision for key/value matrices.</p></td>
+          <td><p>Use half-precision for key/value cache.</p></td>
           <td>
                 <code>False</code>
           </td>
@@ -1294,7 +1294,7 @@ This package provides:</p>
           <td>
                 <code>bool</code>
           </td>
-          <td><p>Return logits for all tokens, not just the vocabulary.</p></td>
+          <td><p>Return logits for all tokens, not just the last token.</p></td>
           <td>
                 <code>False</code>
           </td>
@@ -1304,7 +1304,7 @@ This package provides:</p>
           <td>
                 <code>bool</code>
           </td>
-          <td><p>Only use tokens in the vocabulary.</p></td>
+          <td><p>Only load the vocabulary no weights.</p></td>
           <td>
                 <code>False</code>
           </td>
@@ -1425,13 +1425,13 @@ This package provides:</p>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Load a llama.cpp model from `model_path`.</span>
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">    Args:</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">        model_path: Path to the model directory.</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">        n_ctx: Number of tokens to keep in memory.</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">        model_path: Path to the model.</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">        n_ctx: Maximum context size.</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">        n_parts: Number of parts to split the model into. If -1, the number of parts is automatically determined.</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">        seed: Random seed.</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">        f16_kv: Use half-precision for key/value matrices.</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">        logits_all: Return logits for all tokens, not just the vocabulary.</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">        vocab_only: Only use tokens in the vocabulary.</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">        seed: Random seed. 0 for random.</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">        f16_kv: Use half-precision for key/value cache.</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">        logits_all: Return logits for all tokens, not just the last token.</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">        vocab_only: Only load the vocabulary no weights.</span>
 </span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        n_threads: Number of threads to use. If None, the number of threads is automatically determined.</span>
 </span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a>
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">    Raises:</span>
