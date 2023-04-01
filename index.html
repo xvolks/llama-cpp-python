@@ -328,6 +328,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#llama_cpp.llama.Llama.token_bos" class="md-nav__link">
+    token_bos()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llama_cpp.llama.Llama.token_eos" class="md-nav__link">
+    token_eos()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -644,6 +658,20 @@
           <li class="md-nav__item">
   <a href="#llama_cpp.llama.Llama.__call__" class="md-nav__link">
     __call__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llama_cpp.llama.Llama.token_bos" class="md-nav__link">
+    token_bos()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llama_cpp.llama.Llama.token_eos" class="md-nav__link">
+    token_eos()
   </a>
   
 </li>
@@ -1373,7 +1401,17 @@ This package provides:</p>
 <span class="normal"><a href="#__codelineno-0-445">445</a></span>
 <span class="normal"><a href="#__codelineno-0-446">446</a></span>
 <span class="normal"><a href="#__codelineno-0-447">447</a></span>
-<span class="normal"><a href="#__codelineno-0-448">448</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="k">class</span> <span class="nc">Llama</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-448">448</a></span>
+<span class="normal"><a href="#__codelineno-0-449">449</a></span>
+<span class="normal"><a href="#__codelineno-0-450">450</a></span>
+<span class="normal"><a href="#__codelineno-0-451">451</a></span>
+<span class="normal"><a href="#__codelineno-0-452">452</a></span>
+<span class="normal"><a href="#__codelineno-0-453">453</a></span>
+<span class="normal"><a href="#__codelineno-0-454">454</a></span>
+<span class="normal"><a href="#__codelineno-0-455">455</a></span>
+<span class="normal"><a href="#__codelineno-0-456">456</a></span>
+<span class="normal"><a href="#__codelineno-0-457">457</a></span>
+<span class="normal"><a href="#__codelineno-0-458">458</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="k">class</span> <span class="nc">Llama</span><span class="p">:</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;High-level Python wrapper for a llama.cpp model.&quot;&quot;&quot;</span>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -1810,6 +1848,16 @@ This package provides:</p>
 </span><span id="__span-0-446"><a id="__codelineno-0-446" name="__codelineno-0-446"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="__span-0-447"><a id="__codelineno-0-447" name="__codelineno-0-447"></a>            <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_free</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">)</span>
 </span><span id="__span-0-448"><a id="__codelineno-0-448" name="__codelineno-0-448"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-449"><a id="__codelineno-0-449" name="__codelineno-0-449"></a>
+</span><span id="__span-0-450"><a id="__codelineno-0-450" name="__codelineno-0-450"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-451"><a id="__codelineno-0-451" name="__codelineno-0-451"></a>    <span class="k">def</span> <span class="nf">token_eos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token</span><span class="p">:</span>
+</span><span id="__span-0-452"><a id="__codelineno-0-452" name="__codelineno-0-452"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the end-of-sequence token.&quot;&quot;&quot;</span>
+</span><span id="__span-0-453"><a id="__codelineno-0-453" name="__codelineno-0-453"></a>        <span class="k">return</span> <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token_eos</span><span class="p">()</span>
+</span><span id="__span-0-454"><a id="__codelineno-0-454" name="__codelineno-0-454"></a>
+</span><span id="__span-0-455"><a id="__codelineno-0-455" name="__codelineno-0-455"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-456"><a id="__codelineno-0-456" name="__codelineno-0-456"></a>    <span class="k">def</span> <span class="nf">token_bos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token</span><span class="p">:</span>
+</span><span id="__span-0-457"><a id="__codelineno-0-457" name="__codelineno-0-457"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the beginning-of-sequence token.&quot;&quot;&quot;</span>
+</span><span id="__span-0-458"><a id="__codelineno-0-458" name="__codelineno-0-458"></a>        <span class="k">return</span> <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token_bos</span><span class="p">()</span>
 </span></code></pre></div></td></tr></table></div>
         </details>
 
@@ -3180,6 +3228,72 @@ This package provides:</p>
 </span><span id="__span-0-441"><a id="__codelineno-0-441" name="__codelineno-0-441"></a>        <span class="n">top_k</span><span class="o">=</span><span class="n">top_k</span><span class="p">,</span>
 </span><span id="__span-0-442"><a id="__codelineno-0-442" name="__codelineno-0-442"></a>        <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span>
 </span><span id="__span-0-443"><a id="__codelineno-0-443" name="__codelineno-0-443"></a>    <span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="llama_cpp.llama.Llama.token_bos" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">token_bos</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the beginning-of-sequence token.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>llama_cpp/llama.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-455">455</a></span>
+<span class="normal"><a href="#__codelineno-0-456">456</a></span>
+<span class="normal"><a href="#__codelineno-0-457">457</a></span>
+<span class="normal"><a href="#__codelineno-0-458">458</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-455"><a id="__codelineno-0-455" name="__codelineno-0-455"></a><span class="nd">@staticmethod</span>
+</span><span id="__span-0-456"><a id="__codelineno-0-456" name="__codelineno-0-456"></a><span class="k">def</span> <span class="nf">token_bos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token</span><span class="p">:</span>
+</span><span id="__span-0-457"><a id="__codelineno-0-457" name="__codelineno-0-457"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the beginning-of-sequence token.&quot;&quot;&quot;</span>
+</span><span id="__span-0-458"><a id="__codelineno-0-458" name="__codelineno-0-458"></a>    <span class="k">return</span> <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token_bos</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="llama_cpp.llama.Llama.token_eos" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">token_eos</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the end-of-sequence token.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>llama_cpp/llama.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-450">450</a></span>
+<span class="normal"><a href="#__codelineno-0-451">451</a></span>
+<span class="normal"><a href="#__codelineno-0-452">452</a></span>
+<span class="normal"><a href="#__codelineno-0-453">453</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-450"><a id="__codelineno-0-450" name="__codelineno-0-450"></a><span class="nd">@staticmethod</span>
+</span><span id="__span-0-451"><a id="__codelineno-0-451" name="__codelineno-0-451"></a><span class="k">def</span> <span class="nf">token_eos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token</span><span class="p">:</span>
+</span><span id="__span-0-452"><a id="__codelineno-0-452" name="__codelineno-0-452"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the end-of-sequence token.&quot;&quot;&quot;</span>
+</span><span id="__span-0-453"><a id="__codelineno-0-453" name="__codelineno-0-453"></a>    <span class="k">return</span> <span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token_eos</span><span class="p">()</span>
 </span></code></pre></div></td></tr></table></div>
       </details>
   </div>
