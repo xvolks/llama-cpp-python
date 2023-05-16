@@ -3190,10 +3190,10 @@ The entire API can be found in <a href="https://github.com/abetlen/llama-cpp-pyt
 </span><span id="__span-0-446"><a id="__codelineno-0-446" name="__codelineno-0-446"></a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
 </span><span id="__span-0-447"><a id="__codelineno-0-447" name="__codelineno-0-447"></a>        <span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-0-448"><a id="__codelineno-0-448" name="__codelineno-0-448"></a>        <span class="n">tokens</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token</span><span class="p">],</span>
-</span><span id="__span-0-449"><a id="__codelineno-0-449" name="__codelineno-0-449"></a>        <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-</span><span id="__span-0-450"><a id="__codelineno-0-450" name="__codelineno-0-450"></a>        <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span><span id="__span-0-451"><a id="__codelineno-0-451" name="__codelineno-0-451"></a>        <span class="n">temp</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span><span id="__span-0-452"><a id="__codelineno-0-452" name="__codelineno-0-452"></a>        <span class="n">repeat_penalty</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="__span-0-449"><a id="__codelineno-0-449" name="__codelineno-0-449"></a>        <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span>
+</span><span id="__span-0-450"><a id="__codelineno-0-450" name="__codelineno-0-450"></a>        <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
+</span><span id="__span-0-451"><a id="__codelineno-0-451" name="__codelineno-0-451"></a>        <span class="n">temp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.80</span><span class="p">,</span>
+</span><span id="__span-0-452"><a id="__codelineno-0-452" name="__codelineno-0-452"></a>        <span class="n">repeat_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span>
 </span><span id="__span-0-453"><a id="__codelineno-0-453" name="__codelineno-0-453"></a>        <span class="n">reset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 </span><span id="__span-0-454"><a id="__codelineno-0-454" name="__codelineno-0-454"></a>        <span class="n">frequency_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
 </span><span id="__span-0-455"><a id="__codelineno-0-455" name="__codelineno-0-455"></a>        <span class="n">presence_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
@@ -4933,7 +4933,7 @@ The entire API can be found in <a href="https://github.com/abetlen/llama-cpp-pyt
 
 
 <h3 id="llama_cpp.llama.Llama.generate" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">generate</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">top_k</span><span class="p">,</span> <span class="n">top_p</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">repeat_penalty</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">frequency_penalty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">presence_penalty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tfs_z</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mirostat_mode</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mirostat_tau</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">mirostat_eta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">generate</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">repeat_penalty</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">frequency_penalty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">presence_penalty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">tfs_z</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mirostat_mode</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mirostat_tau</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">mirostat_eta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span></code>
 
 </h3>
 
@@ -4977,7 +4977,7 @@ The entire API can be found in <a href="https://github.com/abetlen/llama-cpp-pyt
           </td>
           <td><p>The top-k sampling parameter.</p></td>
           <td>
-              <em>required</em>
+                <code>40</code>
           </td>
         </tr>
         <tr>
@@ -4987,7 +4987,7 @@ The entire API can be found in <a href="https://github.com/abetlen/llama-cpp-pyt
           </td>
           <td><p>The top-p sampling parameter.</p></td>
           <td>
-              <em>required</em>
+                <code>0.95</code>
           </td>
         </tr>
         <tr>
@@ -4997,7 +4997,7 @@ The entire API can be found in <a href="https://github.com/abetlen/llama-cpp-pyt
           </td>
           <td><p>The temperature parameter.</p></td>
           <td>
-              <em>required</em>
+                <code>0.8</code>
           </td>
         </tr>
         <tr>
@@ -5007,7 +5007,7 @@ The entire API can be found in <a href="https://github.com/abetlen/llama-cpp-pyt
           </td>
           <td><p>The repeat penalty parameter.</p></td>
           <td>
-              <em>required</em>
+                <code>1.1</code>
           </td>
         </tr>
         <tr>
@@ -5123,10 +5123,10 @@ The entire API can be found in <a href="https://github.com/abetlen/llama-cpp-pyt
 <span class="normal"><a href="#__codelineno-0-523">523</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-446"><a id="__codelineno-0-446" name="__codelineno-0-446"></a><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
 </span><span id="__span-0-447"><a id="__codelineno-0-447" name="__codelineno-0-447"></a>    <span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-0-448"><a id="__codelineno-0-448" name="__codelineno-0-448"></a>    <span class="n">tokens</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">llama_cpp</span><span class="o">.</span><span class="n">llama_token</span><span class="p">],</span>
-</span><span id="__span-0-449"><a id="__codelineno-0-449" name="__codelineno-0-449"></a>    <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-</span><span id="__span-0-450"><a id="__codelineno-0-450" name="__codelineno-0-450"></a>    <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span><span id="__span-0-451"><a id="__codelineno-0-451" name="__codelineno-0-451"></a>    <span class="n">temp</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span><span id="__span-0-452"><a id="__codelineno-0-452" name="__codelineno-0-452"></a>    <span class="n">repeat_penalty</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="__span-0-449"><a id="__codelineno-0-449" name="__codelineno-0-449"></a>    <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span>
+</span><span id="__span-0-450"><a id="__codelineno-0-450" name="__codelineno-0-450"></a>    <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
+</span><span id="__span-0-451"><a id="__codelineno-0-451" name="__codelineno-0-451"></a>    <span class="n">temp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.80</span><span class="p">,</span>
+</span><span id="__span-0-452"><a id="__codelineno-0-452" name="__codelineno-0-452"></a>    <span class="n">repeat_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span>
 </span><span id="__span-0-453"><a id="__codelineno-0-453" name="__codelineno-0-453"></a>    <span class="n">reset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 </span><span id="__span-0-454"><a id="__codelineno-0-454" name="__codelineno-0-454"></a>    <span class="n">frequency_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
 </span><span id="__span-0-455"><a id="__codelineno-0-455" name="__codelineno-0-455"></a>    <span class="n">presence_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
