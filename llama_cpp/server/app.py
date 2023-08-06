@@ -749,7 +749,7 @@ async def create_chat_completion(
         def iterator() -> Iterator[llama_cpp.ChatCompletionChunk]:
             messages = []
             messages.append(last_message)
-            import message_saver as ms
+            import llama_cpp.server.message_saver as ms
             message = ms.create_message(first_response)
             request.session['last_message'] = message.id
             messages.append(message)
