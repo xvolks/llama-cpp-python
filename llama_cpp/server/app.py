@@ -768,7 +768,7 @@ async def create_chat_completion(
                 ms.pack_and_save_message(settings.storage, previous_message, messages)
 
         send_chan, recv_chan = anyio.create_memory_object_stream(10)
-        return EventSourceResponse(
+        response = EventSourceResponse(
             recv_chan, data_sender_callable=partial(  # type: ignore
                 get_event_publisher,
                 request=request,
@@ -776,6 +776,8 @@ async def create_chat_completion(
                 iterator=iterator(),
             )
         )
+        response.set_cookie("session", "The_session")
+        return response
     else:
         return iterator_or_completion
 
