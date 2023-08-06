@@ -75,7 +75,7 @@ class Settings(BaseSettings):
         default=False,
         description="Use a cache to reduce processing times for evaluated prompts.",
     )
-    cache_type: Literal["ram", "disk"] = Field(
+    cache_type: str = Field(
         default="ram",
         description="The type of cache to use. Only used if cache is True.",
     )
