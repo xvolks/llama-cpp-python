@@ -3,7 +3,9 @@
 if [[ -d venv ]]; then
   echo "venv directory found, let's roll!"
 else
-  python3.10 -m venv venv
+  python3.10 -m venv venv || exit 3
+  . ./venv/bin/activate
+  pip install itsdangerous dataclasses dataclasses-json
 fi
 deactivate || echo "No previous venv was active"
 . ./venv/bin/activate
