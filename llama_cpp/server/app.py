@@ -1,5 +1,6 @@
 import json
 import multiprocessing
+from pathlib import Path
 from re import compile, Match, Pattern
 from threading import Lock
 from functools import partial
@@ -15,7 +16,7 @@ from fastapi import Depends, FastAPI, APIRouter, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.routing import APIRoute
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, FilePath, DirectoryPath
 from pydantic_settings import BaseSettings
 from sse_starlette.sse import EventSourceResponse
 
@@ -75,7 +76,7 @@ class Settings(BaseSettings):
         default=False,
         description="Use a cache to reduce processing times for evaluated prompts.",
     )
-    cache_type: Literal["ram", "disk"] = Field(
+    cache_type: str = Field(
         default="ram",
         description="The type of cache to use. Only used if cache is True.",
     )
@@ -102,6 +103,10 @@ class Settings(BaseSettings):
     rms_norm_eps: Optional[float] = Field(
         default=None,
         description="TEMPORARY",
+    )
+    storage: DirectoryPath = Field(
+        default=None,
+        description="Directory in which you'll store the messages"
     )
 
 
@@ -724,6 +729,17 @@ async def create_chat_completion(
         llama_cpp.ChatCompletionChunk
     ]] = await run_in_threadpool(llama.create_chat_completion, **kwargs)
 
+    messages = kwargs.get('messages')
+    previous_message = None
+    if messages:
+        last_message = messages[-1]
+        previous_message = request.session.get('last_message')
+        if previous_message is None:
+            if len(request.cookies) == 0:
+                print("cookies are not managed by client, cannot save message hierarchy.")
+    else:
+        last_message = {'content': 'hi', 'role': 'user'}
+
     if isinstance(iterator_or_completion, Iterator):
         # EAFP: It's easier to ask for forgiveness than permission
         first_response = await run_in_threadpool(next, iterator_or_completion)
@@ -731,11 +747,28 @@ async def create_chat_completion(
         # If no exception was raised from first_response, we can assume that
         # the iterator is valid and we can use it to stream the response.
         def iterator() -> Iterator[llama_cpp.ChatCompletionChunk]:
+            messages = []
+            messages.append(last_message)
+            import message_saver as ms
+            message = ms.create_message(first_response)
+            request.session['last_message'] = message.id
+            messages.append(message)
             yield first_response
-            yield from iterator_or_completion
+            # yield from iterator_or_completion
+            # here we need to get the answers so we have to unpack the generator iterator_or_completion
+            for value in iterator_or_completion:
+                try:
+                    # print(f"{value=}")
+                    message = ms.create_message(value)
+                    messages.append(message)
+                except Exception as e:
+                    print(f"Error occurred in message_saver: {e=}")
+                yield value
+            if settings.storage:
+                ms.pack_and_save_message(settings.storage, previous_message, messages)
 
         send_chan, recv_chan = anyio.create_memory_object_stream(10)
-        return EventSourceResponse(
+        response = EventSourceResponse(
             recv_chan, data_sender_callable=partial(  # type: ignore
                 get_event_publisher,
                 request=request,
@@ -743,6 +776,8 @@ async def create_chat_completion(
                 iterator=iterator(),
             )
         )
+        response.set_cookie("session", "The_session")
+        return response
     else:
         return iterator_or_completion
 

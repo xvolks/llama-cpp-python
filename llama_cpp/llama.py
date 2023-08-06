@@ -1075,6 +1075,7 @@ class Llama:
 
                 if token_end_position >= end:
                     last_text = self.detokenize([token])
+                    print(f"{finish_reason=}")
                     if token_end_position == end - 1:
                         break
                     returned_tokens += 1
@@ -1237,7 +1238,7 @@ class Llama:
         self,
         prompt: str,
         suffix: Optional[str] = None,
-        max_tokens: int = 128,
+        max_tokens: int = 0,
         temperature: float = 0.8,
         top_p: float = 0.95,
         logprobs: Optional[int] = None,
