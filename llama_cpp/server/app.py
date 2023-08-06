@@ -104,7 +104,7 @@ class Settings(BaseSettings):
         default=None,
         description="TEMPORARY",
     )
-    storage: DirectoryPath = Field(
+    storage: Optional[DirectoryPath] = Field(
         default=None,
         description="Directory in which you'll store the messages"
     )
