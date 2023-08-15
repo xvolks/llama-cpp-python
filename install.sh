@@ -3,7 +3,10 @@
 if [[ -d venv ]]; then
   echo "venv directory found, let's roll!"
 else
-  python3.10 -m venv venv || exit 3
+  PY_VER=3.11
+  PYTHON=python$PY_VER
+  $PYTHON --version || brew install python@$PY_VER
+  $PYTHON -m venv venv || exit 3
   . ./venv/bin/activate
   pip install itsdangerous dataclasses dataclasses-json
 fi
