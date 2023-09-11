@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.79]
+
+### Added
+
+- GGUF Support (breaking change requiring new model format)
+
+## [0.1.78]
+
+### Added
+
+- Grammar based sampling via LlamaGrammar which can be passed to completions
+- Make n_gpu_layers == -1 offload all layers
+
 ## [0.1.77]
 
 - (llama.cpp) Update llama.cpp add support for LLaMa 2 70B

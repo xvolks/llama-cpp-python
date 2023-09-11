@@ -108,6 +108,10 @@ class Settings(BaseSettings):
         default=None,
         description="Directory in which you'll store the messages"
     )
+    mul_mat_q: Optional[bool] = Field(
+        default=None,
+        description="TEMPORARY",
+    )
 
 
 class ErrorResponse(TypedDict):
@@ -575,6 +579,7 @@ def make_logit_bias_processor(
 @router.post(
     "/v1/completions",
 )
+@router.post("/v1/engines/copilot-codex/completions")
 async def create_completion(
     request: Request,
     body: CreateCompletionRequest,

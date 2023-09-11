@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "llama_cpp_python"
-version = "0.1.77"
+version = "0.1.84"
 description = "Python bindings for the llama.cpp library"
 authors = ["Andrei Betlen <abetlen@gmail.com>"]
 license = "MIT"
@@ -16,7 +16,7 @@ include = [
 python = "^3.8.1"
 typing-extensions = "^4.7.1"
 numpy = "^1.24.4"
-diskcache = "^5.6.1"
+diskcache = "^5.6.3"
 uvicorn = { version = "^0.23.2", optional = true }
 fastapi = { version = ">=0.100.0", optional = true }
 sse-starlette = { version = ">=1.6.1", optional = true }
@@ -25,15 +25,18 @@ pydantic-settings = { version = ">=2.0.1", optional = true }
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
 twine = "^4.0.2"
-mkdocs = "^1.4.3"
-mkdocstrings = {extras = ["python"], version = "^0.22.0"}
-mkdocs-material = "^9.1.21"
-pytest = "^7.4.0"
+mkdocs = "^1.5.2"
+mkdocstrings = {extras = ["python"], version = "^0.23.0"}
+mkdocs-material = "^9.2.8"
+pytest = "^7.4.2"
 httpx = "^0.24.1"
 scikit-build = "0.17.6"
 
 [tool.poetry.extras]
 server = ["uvicorn", "fastapi", "pydantic-settings", "sse-starlette"]
+
+[tool.pytest.ini_options]
+addopts = "--ignore=vendor"
 
 [build-system]
 requires = [

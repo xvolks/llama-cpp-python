@@ -17,8 +17,11 @@ This package provides:
 
 Documentation is available at [https://llama-cpp-python.readthedocs.io/en/latest](https://llama-cpp-python.readthedocs.io/en/latest).
 
+> [!WARNING]  
+> Starting with version 0.1.79 the model format has changed from `ggmlv3` to `gguf`. Old model files can be converted using the `convert-llama-ggmlv3-to-gguf.py` script in [`llama.cpp`](https://github.com/ggerganov/llama.cpp)
 
-## Installation from PyPI (recommended)
+
+## Installation from PyPI
 
 Install from PyPI (requires a c compiler):
 
@@ -42,7 +45,7 @@ bash Miniforge3-MacOSX-arm64.sh
 ```
 Otherwise, while installing it will build the llama.ccp x86 version which will be 10x slower on Apple Silicon (M1) Mac.
 
-### Installation with OpenBLAS / cuBLAS / CLBlast / Metal
+### Installation with Hardware Acceleration
 
 `llama.cpp` supports multiple BLAS backends for faster processing.
 Use the `FORCE_CMAKE=1` environment variable to force the use of `cmake` and install the pip package for the desired BLAS backend.
@@ -69,6 +72,12 @@ To install with Metal (MPS), set the `LLAMA_METAL=on` environment variable befor
 
 ```bash
 CMAKE_ARGS="-DLLAMA_METAL=on" FORCE_CMAKE=1 pip install llama-cpp-python
+```
+
+To install with hipBLAS / ROCm support for AMD cards, set the `LLAMA_HIPBLAS=on` environment variable before installing:
+
+```bash
+CMAKE_ARGS="-DLLAMA_HIPBLAS=on" FORCE_CMAKE=1 pip install llama-cpp-python
 ```
 
 #### Windows remarks
@@ -169,7 +178,7 @@ docker run --rm -it -p 8000:8000 -v /path/to/models:/models -e MODEL=/models/ggm
 ## Low-level API
 
 The low-level API is a direct [`ctypes`](https://docs.python.org/3/library/ctypes.html) binding to the C API provided by `llama.cpp`.
-The entire lowe-level API can be found in [llama_cpp/llama_cpp.py](https://github.com/abetlen/llama-cpp-python/blob/master/llama_cpp/llama_cpp.py) and directly mirrors the C API in [llama.h](https://github.com/ggerganov/llama.cpp/blob/master/llama.h).
+The entire low-level API can be found in [llama_cpp/llama_cpp.py](https://github.com/abetlen/llama-cpp-python/blob/master/llama_cpp/llama_cpp.py) and directly mirrors the C API in [llama.h](https://github.com/ggerganov/llama.cpp/blob/master/llama.h).
 
 Below is a short example demonstrating how to use the low-level API to tokenize a prompt:
 
@@ -201,7 +210,7 @@ This package is under active development and I welcome any contributions.
 To get started, clone the repository and install the package in development mode:
 
 ```bash
-git clone --recurse-submodules git@github.com:abetlen/llama-cpp-python.git
+git clone --recurse-submodules https://github.com/abetlen/llama-cpp-python.git
 cd llama-cpp-python
 
 # Install with pip
